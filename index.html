@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Studio AMI | Cross-border Localization & Content Operations</title>
+    <meta name="description" content="日韓をつなぐローカライゼーションと制作運用。合同会社スタジオAMI。" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', 'Noto Sans KR', sans-serif;
+            background-color: #fafafa;
+            color: #18181b;
+            overflow-x: hidden;
+        }
+
+        /* 1. Blob Animation (Hero Background) */
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+
+        /* 2. Scroll Reveal Animations (Replacement for Framer Motion viewport props) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Stagger delays */
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-400 { transition-delay: 0.4s; }
+
+        /* 3. 3D Card Hover Effect */
+        .card-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem; /* rounded-xl */
+            background-color: white;
+            border: 1px solid #e4e4e7; /* border-zinc-200 */
+        }
+        .card-gradient {
+            pointer-events: none;
+            position: absolute;
+            inset: -1px;
+            border-radius: 0.75rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            background: radial-gradient(
+                650px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+                rgba(225, 29, 72, 0.1),
+                transparent 80%
+            );
+            z-index: 10;
+        }
+        .card-wrapper:hover .card-gradient {
+            opacity: 1;
+        }
+
+        /* Utils */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Font switching classes */
+        .font-sans-jp { font-family: 'Inter', 'Noto Sans JP', sans-serif; }
+        .font-sans-kr { font-family: 'Inter', 'Noto Sans KR', sans-serif; }
+    </style>
+</head>
+<body class="font-sans-jp transition-all duration-300">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-5 bg-transparent">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="font-bold text-xl tracking-tight flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+                <span class="text-rose-600">Studio</span> AMI
+            </div>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-8" id="desktop-nav-items">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- Mobile Toggle -->
+            <div class="md:hidden flex items-center gap-4">
+                <button id="mobile-lang-btn" class="flex items-center gap-1 text-xs font-bold bg-zinc-100 px-3 py-1.5 rounded-full">
+                    <!-- Injected via JS -->
+                </button>
+                <button id="mobile-menu-btn" class="text-zinc-800">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-zinc-100 overflow-hidden transition-all duration-300 origin-top">
+            <div class="flex flex-col p-6 gap-4" id="mobile-menu-items">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="hero-section" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-zinc-50">
+            <!-- Background Animated Elements -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-rose-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+                <div class="absolute top-[20%] left-[-10%] w-[400px] h-[400px] bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+            </div>
+
+            <div class="max-w-6xl mx-auto px-6 z-10 text-center">
+                <div class="mb-6 inline-block reveal active">
+                    <span id="hero-tagline" class="bg-white border border-rose-100 text-rose-600 text-xs md:text-sm font-bold px-4 py-1.5 rounded-full shadow-sm">
+                        <!-- Injected JS -->
+                    </span>
+                </div>
+
+                <div class="mb-8 reveal delay-100">
+                    <h1 id="hero-headline" class="text-3xl md:text-6xl lg:text-7xl font-bold text-zinc-900 leading-[1.15] tracking-tight max-w-[24ch] mx-auto">
+                         <!-- Injected JS -->
+                    </h1>
+                </div>
+
+                <p id="hero-subheadline" class="text-lg md:text-xl text-zinc-500 mb-10 leading-relaxed whitespace-pre-wrap max-w-3xl mx-auto reveal delay-200">
+                     <!-- Injected JS -->
+                </p>
+
+                <div class="reveal delay-300">
+                    <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" class="group bg-zinc-900 text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-zinc-800 transition-all shadow-lg hover:shadow-xl flex items-center gap-2 mx-auto">
+                        <span id="hero-cta"><!-- Injected JS --></span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Scroll indicator -->
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 reveal active delay-400">
+                <div class="w-[1px] h-16 bg-gradient-to-b from-zinc-300 to-transparent"></div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-24 bg-white relative">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="mb-16 md:text-center max-w-3xl mx-auto reveal">
+                    <h2 id="services-title" class="text-rose-600 font-bold tracking-wider text-sm mb-3 uppercase"></h2>
+                    <h3 id="services-subtitle" class="text-3xl md:text-4xl font-bold text-zinc-900"></h3>
+                </div>
+
+                <div id="services-grid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Injected JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Section -->
+        <section id="work" class="py-24 bg-zinc-50 border-t border-zinc-200">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="mb-16 reveal">
+                    <h2 id="work-title" class="text-rose-600 font-bold tracking-wider text-sm mb-3 uppercase"></h2>
+                    <h3 id="work-subtitle" class="text-3xl md:text-4xl font-bold text-zinc-900"></h3>
+                </div>
+
+                <div id="work-grid" class="grid md:grid-cols-3 gap-8">
+                    <!-- Injected JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section id="process" class="py-24 bg-zinc-900 text-white">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="mb-16 text-center reveal">
+                    <h2 id="process-title" class="text-rose-400 font-bold tracking-wider text-sm mb-3 uppercase"></h2>
+                    <h3 id="process-subtitle" class="text-3xl md:text-4xl font-bold"></h3>
+                </div>
+
+                <div class="relative">
+                    <!-- Connecting Line (Desktop) -->
+                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-[1px] bg-zinc-700 -translate-y-1/2 z-0"></div>
+
+                    <div id="process-grid" class="grid md:grid-cols-4 gap-12 md:gap-6 relative z-10">
+                        <!-- Injected JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-24 bg-white">
+            <div class="max-w-4xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row gap-12 items-start">
+                    <div class="flex-1 reveal">
+                        <h2 id="about-title" class="text-rose-600 font-bold tracking-wider text-sm mb-6 uppercase"></h2>
+                        <div class="mb-6">
+                            <h3 id="about-company-primary" class="text-3xl font-bold text-zinc-900 mb-1"></h3>
+                            <p id="about-company-secondary" class="text-zinc-500 text-lg font-medium"></p>
+                        </div>
+                        <div id="about-content" class="space-y-4 text-zinc-600 leading-relaxed mb-8">
+                            <!-- Injected JS -->
+                        </div>
+                        <div class="flex items-center gap-2 text-sm font-medium text-zinc-800 mb-6">
+                            <div class="w-2 h-2 bg-rose-500 rounded-full animate-pulse"></div>
+                            <span id="about-location"></span>
+                        </div>
+                        
+                        <!-- Tech Stack / Cloud Badge -->
+                        <div class="bg-zinc-50 border border-zinc-100 p-4 rounded-lg flex items-start gap-3">
+                            <div class="p-2 bg-white rounded shadow-sm text-zinc-600">
+                                <i data-lucide="database" class="w-5 h-5"></i>
+                            </div>
+                            <p id="about-cloud" class="text-xs text-zinc-500 leading-relaxed pt-1"></p>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full md:w-1/3 space-y-4 reveal delay-200">
+                        <div class="bg-zinc-900 text-white p-6 rounded-xl shadow-xl transform md:rotate-3 hover:rotate-0 transition-transform duration-300">
+                            <div class="text-4xl font-bold text-rose-500 mb-2">100%</div>
+                            <div class="text-sm font-medium opacity-80">Compliance & <br/>Tax Reporting</div>
+                        </div>
+                        <div class="bg-zinc-100 p-6 rounded-xl shadow-sm transform md:-rotate-2 hover:rotate-0 transition-transform duration-300">
+                            <div class="text-4xl font-bold text-zinc-900 mb-2">XP</div>
+                            <div class="text-sm font-medium text-zinc-600">Freelance Network <br/> & Operations</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 bg-zinc-50 border-t border-zinc-200">
+            <div class="max-w-2xl mx-auto px-6">
+                <div class="text-center mb-12 reveal">
+                    <h2 id="contact-title" class="text-3xl font-bold text-zinc-900 mb-4"></h2>
+                    <p id="contact-desc" class="text-zinc-600"></p>
+                </div>
+
+                <div class="bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-zinc-100 reveal delay-100">
+                    <!-- Success Message (Hidden by default) -->
+                    <div id="contact-success" class="hidden text-center py-12">
+                        <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="check" class="w-8 h-8"></i>
+                        </div>
+                        <p id="contact-success-msg" class="text-zinc-800 font-medium"></p>
+                        <button onclick="resetForm()" class="mt-6 text-sm text-rose-600 hover:underline">Reset</button>
+                    </div>
+
+                    <!-- Form -->
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                        <!-- Honeypot -->
+                        <input type="text" class="hidden" id="honeypot" autocomplete="off" />
+
+                        <div>
+                            <label id="label-name" class="block text-sm font-medium text-zinc-700 mb-2"></label>
+                            <input required type="text" class="w-full px-4 py-3 rounded-lg border border-zinc-200 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 outline-none transition-all" />
+                        </div>
+                        <div>
+                            <label id="label-email" class="block text-sm font-medium text-zinc-700 mb-2"></label>
+                            <input required type="email" class="w-full px-4 py-3 rounded-lg border border-zinc-200 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 outline-none transition-all" />
+                        </div>
+                        <div>
+                            <label id="label-message" class="block text-sm font-medium text-zinc-700 mb-2"></label>
+                            <textarea required rows="5" class="w-full px-4 py-3 rounded-lg border border-zinc-200 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 outline-none transition-all resize-none"></textarea>
+                        </div>
+                        
+                        <button type="submit" id="submit-btn" class="w-full bg-zinc-900 text-white py-4 rounded-lg font-medium hover:bg-zinc-800 transition-colors flex items-center justify-center gap-2 disabled:opacity-70">
+                            <span id="btn-icon"><i data-lucide="send" class="w-4 h-4"></i></span>
+                            <span id="submit-text"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-900 text-zinc-400 py-12 border-t border-zinc-800 text-sm">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                &copy; <span id="year"></span> Studio AMI LLC. All rights reserved.
+            </div>
+            <div class="flex gap-6">
+                <span>Osaka, Japan</span>
+                <span>Privacy Policy</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LOGIC -->
+    <script>
+        // --- DATA ---
+        const CONTENT = {
+            JP: {
+                nav: [
+                    { id: 'services', label: 'Services' },
+                    { id: 'work', label: 'Work' },
+                    { id: 'process', label: 'Process' },
+                    { id: 'about', label: 'About' },
+                    { id: 'contact', label: 'Contact' },
+                ],
+                hero: {
+                    tagline: 'Cross-border Localization & Content Operations',
+                    headline: [
+                        '日韓ローカライズと制作運用。',
+                        '品質と納期を、仕組みで守る。'
+                    ],
+                    subheadline: '翻訳だけで終わらせない。制作・運用・ツール開発まで見据えた\nプロジェクト型実行組織「Studio AMI」',
+                    cta: '相談する / 見積もり依頼',
+                },
+                services: {
+                    title: 'Our Expertise',
+                    subtitle: 'コンテンツの価値を最大化する統合ソリューション',
+                    items: [
+                        { title: 'JP↔KR Localization', description: '単なる翻訳ではなく、コンテンツの文脈・トーン・読者体験を重視したローカライゼーション。', icon: 'globe' },
+                        { title: 'Content Production', description: 'Webtoon・デジタルコンテンツの写植、編集、データ整理。クリエイティブ制作のラストワンマイルを支援。', icon: 'layers' },
+                        { title: 'Project Operations', description: 'パートナーソーシングから進捗管理、納品、支払いまで。複雑な外部連携を一元管理。', icon: 'activity' },
+                        { title: 'Automation & Tooling', description: '画像処理やドキュメント管理の自動化ツールを内製開発。人為的ミスを減らし、生産性を向上。', icon: 'cpu' },
+                    ],
+                },
+                work: {
+                    title: 'Selected Works',
+                    subtitle: '課題解決と確実な実行の記録',
+                    items: [
+                        { id: 1, category: 'Digital Comics', title: 'デジタル漫画ローカライゼーション', goal: '月間50話以上の連載作品を、品質を落とさず日韓同時配信する。', process: '翻訳・監修・写植のワークフローを統合し、用語集を一元管理。', impact: '作業時間を30%短縮しつつ、誤訳・誤植率を大幅に低減。' },
+                        { id: 2, category: 'Operations', title: '多国籍パートナー協業プロジェクト', goal: '20名以上のフリーランスが関わるプロジェクトの品質と納期を標準化する。', process: 'ガイドライン策定とSlack/Notionベースの進捗可視化、自動リマインド導入。', impact: '納期遅延ゼロを達成。請求・支払いの事務コストを半減。' },
+                        { id: 3, category: 'Internal R&D', title: '画像品質チェック自動化ツール', goal: '膨大な画像納品物の検品にかかる目視コストを削減する。', process: '翻訳前後の画像比較とOCR技術を用いた差分検出ツールを開発。', impact: '検品精度向上と同時に、QC担当者の工数を大幅に削減。' },
+                    ],
+                },
+                process: {
+                    title: 'Our Process',
+                    subtitle: '信頼を生む、透明性の高いワークフロー',
+                    steps: [
+                        { step: '01', title: 'Kickoff', description: '要件定義、トーン＆マナー策定、用語集の整備、納期と納品形式の合意形成。' },
+                        { step: '02', title: 'Production', description: '翻訳 → 1次検収 → 編集・写植 → 最終QC。各工程でダブルチェックを実施。' },
+                        { step: '03', title: 'Communication', description: '定期的な進捗共有と変更管理。予期せぬトラブルも迅速に報告・解決案を提示。' },
+                        { step: '04', title: 'Delivery & Compliance', description: '標準フォーマットでの納品。契約・証憑・精算まで透明性を持って完了。' },
+                    ],
+                },
+                about: {
+                    title: 'About Us',
+                    companyName: { primary: '合同会社スタジオAMI', secondary: 'Studio AMI LLC' },
+                    location: '大阪府大阪市 (Namba, Osaka)',
+                    content: [
+                        '私たちは、言葉を置き換えるだけの翻訳会社ではありません。',
+                        'フリーランス翻訳家としての現場経験から始まり、現在はコンテンツ制作・運用全体をカバーする法人として活動しています。',
+                        '「Cross-border」な感性と、「Project Management」の規律を併せ持ち、クライアント様のビジネスを裏側から支える実行部隊です。',
+                    ],
+                    cloudInfo: 'Future Plan: Google Cloud (Cloud Run/Storage) を活用したセキュアでスケーラブルなコンテンツパイプラインを構築・拡張予定。',
+                },
+                contact: {
+                    title: 'Contact',
+                    desc: 'プロジェクトのご相談、お見積もりなど、お気軽にお問い合わせください。',
+                    form: { name: 'お名前 / 貴社名', email: 'メールアドレス', message: 'お問い合わせ内容', submit: '送信する', success: 'お問い合わせありがとうございます。内容を確認次第、ご連絡いたします。', error: '送信に失敗しました。時間をおいて再度お試しください。' },
+                },
+            },
+            KR: {
+                nav: [
+                    { id: 'services', label: '서비스' },
+                    { id: 'work', label: '프로젝트' },
+                    { id: 'process', label: '프로세스' },
+                    { id: 'about', label: '회사소개' },
+                    { id: 'contact', label: '문의하기' },
+                ],
+                hero: {
+                    tagline: 'Cross-border Localization & Content Operations',
+                    headline: [
+                        '한·일 로컬라이제이션과 콘텐츠 운영.',
+                        '품질과 납기, 시스템으로 지킵니다.'
+                    ],
+                    subheadline: '단순 번역을 넘어 제작·운영·툴링까지 책임지는\n프로젝트형 실행 조직 「Studio AMI」',
+                    cta: '문의 / 견적 요청',
+                },
+                services: {
+                    title: 'Our Expertise',
+                    subtitle: '콘텐츠 가치를 극대화하는 통합 솔루션',
+                    items: [
+                        { title: 'JP↔KR Localization', description: '단순 번역이 아닌, 콘텐츠의 맥락·톤·독자 경험을 최우선으로 하는 로컬라이제이션.', icon: 'globe' },
+                        { title: 'Content Production', description: '웹툰·디지털 콘텐츠의 식자, 편집, 데이터 정리. 크리에이티브 제작의 마지막 단계를 지원합니다.', icon: 'layers' },
+                        { title: 'Project Operations', description: '파트너 소싱부터 진척 관리, 납품, 정산까지. 복잡한 외부 협업을 일원화하여 관리합니다.', icon: 'activity' },
+                        { title: 'Automation & Tooling', description: '이미지 처리 및 문서 관리 자동화 툴을 내부 R&D로 개발. 인적 오류를 줄이고 생산성을 높입니다.', icon: 'cpu' },
+                    ],
+                },
+                work: {
+                    title: 'Selected Works',
+                    subtitle: '과제 해결과 확실한 실행의 기록',
+                    items: [
+                        { id: 1, category: 'Digital Comics', title: '디지털 만화 로컬라이제이션', goal: '월 50화 이상의 연재 작품을 품질 저하 없이 한일 동시 서비스.', process: '번역·감수·식자 워크플로우 통합 및 용어집 일원화 관리.', impact: '작업 시간 30% 단축 및 오역/오타율 대폭 감소.', },
+                        { id: 2, category: 'Operations', title: '다국적 파트너 협업 프로젝트', goal: '20명 이상의 프리랜서가 참여하는 프로젝트의 품질과 납기 표준화.', process: '가이드라인 수립 및 Slack/Notion 기반 진척 시각화, 자동 리마인드 도입.', impact: '납기 지연 0건 달성. 정산 및 송금 행정 비용 50% 절감.', },
+                        { id: 3, category: 'Internal R&D', title: '이미지 품질 체크 자동화 툴', goal: '방대한 이미지 납품물의 검수에 소요되는 육안 확인 비용 절감.', process: '번역 전후 이미지 비교 및 OCR 기술을 활용한 차분(Diff) 검출 툴 개발.', impact: '검수 정확도 향상 및 QC 담당자 공수 대폭 절감.', },
+                    ],
+                },
+                process: {
+                    title: 'Our Process',
+                    subtitle: '신뢰를 만드는 투명한 워크플로우',
+                    steps: [
+                        { step: '01', title: 'Kickoff', description: '요구사항 정의, 톤앤매너 확립, 용어집 정비, 납기 및 납품 포맷 합의.' },
+                        { step: '02', title: 'Production', description: '번역 → 1차 감수 → 편집/식자 → 최종 QC. 각 공정별 더블 체크 시스템 가동.' },
+                        { step: '03', title: 'Communication', description: '주기적인 진척 공유와 변경 관리. 이슈 발생 시 신속한 보고 및 해결안 제시.' },
+                        { step: '04', title: 'Delivery & Compliance', description: '표준 포맷 납품. 계약·증빙·정산 흐름을 투명하게 관리하여 마무리.' },
+                    ],
+                },
+                about: {
+                    title: 'About Us',
+                    companyName: { primary: 'Studio AMI LLC', secondary: '합동회사 스튜디오 아미' },
+                    location: '일본 오사카 (Namba, Osaka)',
+                    content: [
+                        '우리는 텍스트만 치환하는 번역 회사가 아닙니다.',
+                        '프리랜서 번역가로서의 현장 경험에서 시작해, 현재는 콘텐츠 제작과 운영 전반을 커버하는 법인으로 성장했습니다.',
+                        'Cross-border 감각과 Project Management 규율을 바탕으로, 클라이언트의 비즈니스를 뒤에서 든든하게 받치는 실행 조직입니다.',
+                    ],
+                    cloudInfo: 'Future Plan: Google Cloud (Cloud Run/Storage)를 활용한 보안성 높고 확장 가능한 콘텐츠 파이프라인 구축 예정.',
+                },
+                contact: {
+                    title: 'Contact',
+                    desc: '프로젝트 상담이나 견적 문의 등 편하게 연락주세요.',
+                    form: { name: '이름 / 회사명', email: '이메일 주소', message: '문의 내용', submit: '전송하기', success: '문의해주셔서 감사합니다. 확인 후 곧 연락드리겠습니다.', error: '전송에 실패했습니다. 잠시 후 다시 시도해주세요.', },
+                },
+            },
+        };
+
+        // --- STATE & UTILS ---
+        let currentLang = 'JP';
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.body.className = `transition-all duration-300 ${lang === 'KR' ? 'font-sans-kr' : 'font-sans-jp'}`;
+            render();
+        }
+
+        function scrollToId(id) {
+            document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+            // Close mobile menu if open
+            const menu = document.getElementById('mobile-menu');
+            if (!menu.classList.contains('hidden')) {
+                toggleMobileMenu();
+            }
+        }
+
+        // --- RENDER FUNCTION ---
+        function render() {
+            const data = CONTENT[currentLang];
+
+            // 1. Navigation
+            // Desktop
+            const desktopNavContainer = document.getElementById('desktop-nav-items');
+            desktopNavContainer.innerHTML = data.nav.map(item => 
+                `<button onclick="scrollToId('${item.id}')" class="text-sm font-medium text-zinc-600 hover:text-rose-600 transition-colors">${item.label}</button>`
+            ).join('') + 
+            `<button onclick="setLang('${currentLang === 'JP' ? 'KR' : 'JP'}')" class="flex items-center gap-1 text-xs font-bold bg-zinc-100 px-3 py-1.5 rounded-full hover:bg-zinc-200 transition-colors">
+                <i data-lucide="globe" class="w-3.5 h-3.5"></i> ${currentLang}
+             </button>`;
+
+            // Mobile
+            const mobileLangBtn = document.getElementById('mobile-lang-btn');
+            mobileLangBtn.innerHTML = currentLang;
+            mobileLangBtn.onclick = () => setLang(currentLang === 'JP' ? 'KR' : 'JP');
+
+            const mobileMenuContainer = document.getElementById('mobile-menu-items');
+            mobileMenuContainer.innerHTML = data.nav.map(item => 
+                `<button onclick="scrollToId('${item.id}')" class="text-left text-lg font-medium text-zinc-700">${item.label}</button>`
+            ).join('');
+
+            // 2. Hero
+            document.getElementById('hero-tagline').innerText = data.hero.tagline;
+            // Render headline as individual block spans for controlled line breaking
+            document.getElementById('hero-headline').innerHTML = data.hero.headline.map(line => 
+                `<span class="block break-keep">${line}</span>`
+            ).join('');
+            document.getElementById('hero-subheadline').innerText = data.hero.subheadline;
+            document.getElementById('hero-cta').innerText = data.hero.cta;
+
+            // 3. Services
+            document.getElementById('services-title').innerText = data.services.title;
+            document.getElementById('services-subtitle').innerText = data.services.subtitle;
+            document.getElementById('services-grid').innerHTML = data.services.items.map(item => `
+                <div class="card-wrapper h-full group">
+                    <div class="card-gradient"></div>
+                    <div class="relative p-8 flex flex-col h-full z-20">
+                        <div class="w-12 h-12 bg-rose-50 rounded-xl flex items-center justify-center text-rose-600 mb-6">
+                            <i data-lucide="${item.icon}" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-900 mb-3">${item.title}</h4>
+                        <p class="text-zinc-500 text-sm leading-relaxed flex-grow">${item.description}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // 4. Work
+            document.getElementById('work-title').innerText = data.work.title;
+            document.getElementById('work-subtitle').innerText = data.work.subtitle;
+            document.getElementById('work-grid').innerHTML = data.work.items.map((item, idx) => `
+                <div class="card-wrapper bg-white group reveal delay-${(idx % 3) * 100}">
+                    <div class="card-gradient"></div>
+                    <div class="relative p-8 h-full flex flex-col z-20">
+                        <div class="text-xs font-bold text-rose-600 mb-2 uppercase tracking-wide">${item.category}</div>
+                        <h4 class="text-2xl font-bold text-zinc-900 mb-6">${item.title}</h4>
+                        <div class="space-y-4 flex-grow">
+                            <div>
+                                <span class="text-xs font-bold text-zinc-400 block mb-1">GOAL</span>
+                                <p class="text-sm text-zinc-600">${item.goal}</p>
+                            </div>
+                            <div>
+                                <span class="text-xs font-bold text-zinc-400 block mb-1">PROCESS</span>
+                                <p class="text-sm text-zinc-600">${item.process}</p>
+                            </div>
+                            <div>
+                                <span class="text-xs font-bold text-zinc-400 block mb-1">IMPACT</span>
+                                <p class="text-sm text-zinc-900 font-medium">${item.impact}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // 5. Process
+            document.getElementById('process-title').innerText = data.process.title;
+            document.getElementById('process-subtitle').innerText = data.process.subtitle;
+            document.getElementById('process-grid').innerHTML = data.process.steps.map((step, idx) => `
+                <div class="group reveal delay-${idx * 100}">
+                    <div class="w-12 h-12 bg-zinc-800 border border-zinc-700 rounded-full flex items-center justify-center text-rose-400 font-bold text-lg mb-6 mx-auto group-hover:bg-rose-600 group-hover:text-white group-hover:border-rose-600 transition-all duration-300 relative z-20">
+                        ${step.step}
+                    </div>
+                    <div class="text-center px-2">
+                        <h4 class="text-lg font-bold mb-3">${step.title}</h4>
+                        <p class="text-zinc-400 text-sm leading-relaxed">${step.description}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // 6. About
+            document.getElementById('about-title').innerText = data.about.title;
+            document.getElementById('about-company-primary').innerText = data.about.companyName.primary;
+            document.getElementById('about-company-secondary').innerText = data.about.companyName.secondary;
+            document.getElementById('about-content').innerHTML = data.about.content.map(p => `<p>${p}</p>`).join('');
+            document.getElementById('about-location').innerText = data.about.location;
+            document.getElementById('about-cloud').innerText = data.about.cloudInfo;
+
+            // 7. Contact
+            document.getElementById('contact-title').innerText = data.contact.title;
+            document.getElementById('contact-desc').innerText = data.contact.desc;
+            document.getElementById('label-name').innerText = data.contact.form.name;
+            document.getElementById('label-email').innerText = data.contact.form.email;
+            document.getElementById('label-message').innerText = data.contact.form.message;
+            document.getElementById('submit-text').innerText = data.contact.form.submit;
+            document.getElementById('contact-success-msg').innerText = data.contact.form.success;
+
+            // 8. Footer
+            document.getElementById('year').innerText = new Date().getFullYear();
+
+            // Re-initialize icons and 3D effects
+            lucide.createIcons();
+            init3DEffects();
+            initScrollAnimations(); // Re-trigger for new elements
+        }
+
+        // --- INTERACTION LOGIC ---
+
+        // 1. Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').onclick = toggleMobileMenu;
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.querySelector('#mobile-menu-btn i');
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                // Change icon to X (simulated by re-rendering Lucide)
+                icon.setAttribute('data-lucide', 'x');
+            } else {
+                menu.classList.add('hidden');
+                icon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        }
+
+        // 2. Scroll Header Logic
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-white/80', 'backdrop-blur-md', 'border-b', 'border-zinc-100', 'py-3');
+                nav.classList.remove('py-5', 'bg-transparent');
+            } else {
+                nav.classList.remove('bg-white/80', 'backdrop-blur-md', 'border-b', 'border-zinc-100', 'py-3');
+                nav.classList.add('py-5', 'bg-transparent');
+            }
+        });
+
+        // 3. 3D Card Effect (Vanilla JS version of useMotionValue/useMotionTemplate)
+        function init3DEffects() {
+            const cards = document.querySelectorAll('.card-wrapper');
+            cards.forEach(card => {
+                card.onmousemove = e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                };
+            });
+        }
+
+        // 4. Scroll Reveal (IntersectionObserver)
+        function initScrollAnimations() {
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            reveals.forEach(el => observer.observe(el));
+        }
+
+        // 5. Contact Form Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const honeypot = document.getElementById('honeypot').value;
+            if (honeypot) return;
+
+            const btn = document.getElementById('submit-btn');
+            const btnIcon = document.getElementById('btn-icon');
+            
+            // Loading State
+            btn.disabled = true;
+            btn.classList.add('opacity-75');
+            btnIcon.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i>`;
+            lucide.createIcons();
+
+            // Simulate API
+            setTimeout(() => {
+                document.getElementById('contact-form').classList.add('hidden');
+                document.getElementById('contact-success').classList.remove('hidden');
+                // Reset button state
+                btn.disabled = false;
+                btn.classList.remove('opacity-75');
+                btnIcon.innerHTML = `<i data-lucide="send" class="w-4 h-4"></i>`;
+                lucide.createIcons();
+            }, 1500);
+        }
+
+        function resetForm() {
+            document.getElementById('contact-form').reset();
+            document.getElementById('contact-success').classList.add('hidden');
+            document.getElementById('contact-form').classList.remove('hidden');
+        }
+
+        // --- INIT ---
+        window.onload = () => {
+            render();
+        };
+
+    </script>
+</body>
+</html>

@@ -224,15 +224,16 @@
                         <div id="about-content" class="space-y-4 text-zinc-600 leading-relaxed mb-8">
                             <!-- Injected JS -->
                         </div>
-                        <div class="flex items-center gap-2 text-sm font-medium text-zinc-800 mb-6">
-                            <div class="w-2 h-2 bg-rose-500 rounded-full animate-pulse"></div>
-                            <span id="about-location"></span>
+
+                        <!-- Company Info Table -->
+                        <div id="about-company-info" class="border-t border-zinc-200 pt-6 space-y-0 text-sm">
+                            <!-- Injected JS -->
                         </div>
-                        
+
                         <!-- Tech Stack / Cloud Badge -->
-                        <div class="bg-zinc-50 border border-zinc-100 p-4 rounded-lg flex items-start gap-3">
+                        <div class="bg-zinc-50 border border-zinc-100 p-4 rounded-lg flex items-start gap-3 mt-6">
                             <div class="p-2 bg-white rounded shadow-sm text-zinc-600">
-                                <i data-lucide="database" class="w-5 h-5"></i>
+                                <i data-lucide="cloud" class="w-5 h-5"></i>
                             </div>
                             <p id="about-cloud" class="text-xs text-zinc-500 leading-relaxed pt-1"></p>
                         </div>
@@ -334,21 +335,21 @@
                 },
                 technology: {
                     title: 'Our Technology',
-                    subtitle: 'クリエイティブを加速させる独自のソリューション',
+                    subtitle: 'クリエイティブを加速させる<br>独自のソリューション',
                     items: [
                         { title: 'Contextual AI Engine', description: '作品ごとの世界観や文脈を学習し、翻訳の質とスピードを同時に高めるハイブリッドエンジン。', icon: 'cpu' },
                         { title: 'Smart Typesetting', description: 'マンガの吹き出し認識から文字配置までを自動化し、制作時間を大幅に短縮する画像処理技術。', icon: 'layers' },
-                        { title: 'Integrated CMS', description: '制作、検品、納品までの全工程をクラウド上で一元管理し、効率的なグローバル展開を支援。', icon: 'database' },
+                        { title: 'Production Cloud', description: 'Google Cloudを基盤に、制作データの管理・共有・バージョン管理を効率化。少人数チームでもスケーラブルな運用を実現。', icon: 'cloud' },
                         { title: 'Automated QC', description: '人の目では見落としがちなエラーをシステムが自動検出し、均一で高品質なクオリティを担保。', icon: 'scan' },
                     ],
                 },
                 originals: {
-                    title: 'Featured Projects',
-                    subtitle: '技術と感性が生み出す新しい価値',
+                    title: 'Projects & Development',
+                    subtitle: '現場の課題を、自ら技術で解決する',
                     items: [
-                        { id: 1, category: 'Global Webtoon', title: '日韓同時配信プロジェクト', goal: '週刊連載のスピード感に合わせ、タイムラグのない多言語展開を実現する。', process: 'AIによる下翻訳と専門家による監修を組み合わせた高速制作フローを構築。', impact: '従来の制作期間を劇的に短縮し、リアルタイムなグローバル配信に貢献。' },
-                        { id: 2, category: 'Digital Archiving', title: '名作マンガのリマスター', goal: 'アナログ時代の名作を、現代のデジタル環境に合わせて高画質・多言語化する。', process: '超解像技術(Super Resolution)とOCR技術を活用し、原画の魅力を損なわずにデジタル化。', impact: '絶版作品のデジタル資産化と、新たな読者層へのリーチを実現。' },
-                        { id: 3, category: 'Internal R&D', title: 'コンテンツ品質管理システム', goal: '膨大な制作物の検品コストを削減し、クリエイターが創作に集中できる環境を作る。', process: '画像比較技術とAIチェックを組み合わせた、24時間稼働の自動検品ツールを開発・運用。', impact: '検品精度の向上とともに、制作現場の工数削減と生産性向上を達成。' },
+                        { id: 1, category: 'Localization', title: 'デジタルコミック日韓同時制作', goal: '月間連載作品の翻訳・写植・検品を、品質を落とさず安定運用する。', process: '翻訳・監修・写植のワークフローを統合し、用語集とスタイルガイドを一元管理。', impact: '作業時間を30%短縮しつつ、誤訳・誤植率を大幅に低減。' },
+                        { id: 2, category: 'Internal R&D', title: 'AI駆動コンテンツQCシステム', goal: '膨大な画像納品物の検品にかかる目視コストを削減し、品質を均一化する。', process: '翻訳前後の画像差分検出、OCR、AIモデルによる自動分類パイプラインを自社開発・運用。', impact: '検品精度の向上と同時に、QC工数を大幅に削減。現在も継続的に改善中。' },
+                        { id: 3, category: 'Internal R&D', title: 'コンテキスト翻訳支援エンジン', goal: '作品固有の文脈・キャラクター口調を反映した高精度な翻訳支援を実現する。', process: 'LLMとカスタムプロンプト設計を組み合わせ、作品別の翻訳メモリを構築。', impact: '翻訳品質の均一化と、新規作品の立ち上げ速度を加速。' },
                     ],
                 },
                 pipeline: {
@@ -363,14 +364,22 @@
                 },
                 about: {
                     title: 'Who We Are',
-                    companyName: { primary: '合同会社スタジオAMI', secondary: 'Studio AMI LLC' },
+                    companyName: { primary: '合同会社スタジオＡＭＩ', secondary: 'Studio AMI LLC' },
                     location: '大阪府大阪市 (Namba, Osaka)',
                     content: [
                         'Studio AMIは、言語の専門家とエンジニアが集うコンテンツ・スタジオです。',
                         '私たちは「翻訳」を単なる作業ではなく、「文化をつなぐ技術」だと捉えています。',
                         'これまでの豊富なローカライズ経験に最新のAI技術を掛け合わせることで、より多くの物語を、より速く、より広く世界へ届けることを目指しています。',
                     ],
-                    cloudInfo: 'Building the Future of Content with Google Cloud Technology.',
+                    companyInfo: [
+                        { label: '代表者', value: '業務執行社員　金仁英' },
+                        { label: '所在地', value: '〒556-0011<br>大阪府大阪市浪速区難波中2-7-16 CITY松本302号' },
+                        { label: 'Tel', value: '06-7878-5355' },
+                        { label: 'E-mail', value: '<a href="mailto:ami@studio-ami.net" class="text-rose-600 hover:underline">ami@studio-ami.net</a>' },
+                        { label: '事業内容', value: '・日韓コンテンツローカライゼーション<br>・デジタルコンテンツの企画・制作及び販売、著作権取得・管理及び許諾<br>・制作支援ツールの開発及びサービス運営' },
+                        { label: '技術基盤', value: 'Google Cloud Platform' },
+                    ],
+                    cloudInfo: 'Google Cloud Platform上で自社ツールを開発・運用。スケーラブルなインフラで成長を加速中。',
                 },
                 partnership: {
                     title: 'Contact Us',
@@ -397,21 +406,21 @@
                 },
                 technology: {
                     title: 'Our Technology',
-                    subtitle: '크리에이티브를 가속화하는 독자적인 솔루션',
+                    subtitle: '크리에이티브를 가속화하는<br>독자적인 솔루션',
                     items: [
                         { title: 'Contextual AI Engine', description: '작품별 세계관과 문맥을 학습하여 번역의 품질과 속도를 동시에 높이는 하이브리드 엔진.', icon: 'cpu' },
                         { title: 'Smart Typesetting', description: '만화 말풍선 인식부터 텍스트 배치까지 자동화하여 제작 시간을 획기적으로 단축하는 이미지 처리 기술.', icon: 'layers' },
-                        { title: 'Integrated CMS', description: '제작, 검수, 납품까지의 전 공정을 클라우드 상에서 일원화 관리하여 효율적인 글로벌 전개를 지원.', icon: 'database' },
+                        { title: 'Production Cloud', description: 'Google Cloud를 기반으로 제작 데이터의 관리·공유·버전 관리를 효율화. 소규모 팀에서도 확장 가능한 운용을 실현.', icon: 'cloud' },
                         { title: 'Automated QC', description: '사람의 눈으로 놓치기 쉬운 오류를 시스템이 자동 검출하여 균일하고 높은 퀄리티를 보장.', icon: 'scan' },
                     ],
                 },
                 originals: {
-                    title: 'Featured Projects',
-                    subtitle: '기술과 감성이 만들어낸 새로운 가치',
+                    title: 'Projects & Development',
+                    subtitle: '현장의 과제를, 스스로 기술로 해결한다',
                     items: [
-                        { id: 1, category: 'Global Webtoon', title: '한일 동시 연재 프로젝트', goal: '주간 연재의 빠른 호흡에 맞춰 타임랙 없는 다국어 서비스를 실현합니다.', process: 'AI 초벌 번역과 전문가 감수를 결합한 고속 제작 파이프라인 구축.', impact: '기존 제작 기간을 획기적으로 단축하고 실시간 글로벌 배급에 기여.', },
-                        { id: 2, category: 'Digital Archiving', title: '명작 만화 리마스터링', goal: '아날로그 시대의 명작을 현대 디지털 환경에 맞춰 고화질·다국어화합니다.', process: '초해상화 기술(Super Resolution)과 OCR 기술을 활용해 원화의 매력을 보존하며 디지털화.', impact: '절판된 작품의 디지털 자산화 및 새로운 독자층 확보.', },
-                        { id: 3, category: 'Internal R&D', title: '콘텐츠 품질 관리 시스템', goal: '방대한 제작물의 검수 비용을 절감하고, 크리에이터가 창작에 집중할 수 있는 환경을 만듭니다.', process: '이미지 비교 기술과 AI 체크를 결합한 24시간 가동 자동 검수 툴 개발 및 운용.', impact: '검수 정확도 향상과 함께 제작 현장의 공수 절감 및 생산성 증대.', },
+                        { id: 1, category: 'Localization', title: '디지털 코믹 한일 동시 제작', goal: '월간 연재 작품의 번역·식자·검수를 품질 저하 없이 안정적으로 운용.', process: '번역·감수·식자 워크플로우를 통합하고, 용어집과 스타일 가이드를 일원화 관리.', impact: '작업 시간 30% 단축 및 오역·오타율 대폭 감소.' },
+                        { id: 2, category: 'Internal R&D', title: 'AI 기반 콘텐츠 QC 시스템', goal: '방대한 이미지 납품물의 검수에 소요되는 육안 확인 비용을 절감하고 품질을 균일화.', process: '번역 전후 이미지 차분 검출, OCR, AI 모델에 의한 자동 분류 파이프라인을 자체 개발·운용.', impact: '검수 정확도 향상과 동시에 QC 공수를 대폭 절감. 현재도 지속적으로 개선 중.' },
+                        { id: 3, category: 'Internal R&D', title: '컨텍스트 번역 지원 엔진', goal: '작품 고유의 문맥·캐릭터 말투를 반영한 고정밀 번역 지원을 실현.', process: 'LLM과 커스텀 프롬프트 설계를 결합하여 작품별 번역 메모리를 구축.', impact: '번역 품질의 균일화와 신규 작품 온보딩 속도 가속.' },
                     ],
                 },
                 pipeline: {
@@ -433,7 +442,15 @@
                         '우리는 「번역」을 단순한 작업이 아닌, 「문화를 잇는 기술」이라고 정의합니다.',
                         '수년간 축적해 온 로컬라이즈 경험에 최신 AI 기술을 더해, 더 많은 이야기를, 더 빠르게, 더 넓은 세상으로 전하는 것을 목표로 합니다.',
                     ],
-                    cloudInfo: 'Building the Future of Content with Google Cloud Technology.',
+                    companyInfo: [
+                        { label: '대표자', value: '업무집행사원　김인영' },
+                        { label: '소재지', value: '〒556-0011<br>오사카부 오사카시 나니와구 난바나카 2-7-16 CITY마츠모토 302호' },
+                        { label: 'Tel', value: '06-7878-5355' },
+                        { label: 'E-mail', value: '<a href="mailto:ami@studio-ami.net" class="text-rose-600 hover:underline">ami@studio-ami.net</a>' },
+                        { label: '사업내용', value: '・한일 콘텐츠 로컬라이제이션<br>・디지털 콘텐츠의 기획·제작 및 판매, 저작권 취득·관리 및 허락<br>・제작 지원 툴 개발 및 서비스 운영' },
+                        { label: '기술기반', value: 'Google Cloud Platform' },
+                    ],
+                    cloudInfo: 'Google Cloud Platform 위에서 자사 툴을 개발·운용. 확장 가능한 인프라로 성장을 가속 중.',
                 },
                 partnership: {
                     title: 'Contact Us',
@@ -496,7 +513,7 @@
 
             // 3. Services
             document.getElementById('services-title').innerText = data.technology.title;
-            document.getElementById('services-subtitle').innerText = data.technology.subtitle;
+            document.getElementById('services-subtitle').innerHTML = data.technology.subtitle;
             document.getElementById('services-grid').innerHTML = data.technology.items.map(item => `
                 <div class="card-wrapper h-full group">
                     <div class="card-gradient"></div>
@@ -557,7 +574,16 @@
             document.getElementById('about-company-primary').innerText = data.about.companyName.primary;
             document.getElementById('about-company-secondary').innerText = data.about.companyName.secondary;
             document.getElementById('about-content').innerHTML = data.about.content.map(p => `<p>${p}</p>`).join('');
-            document.getElementById('about-location').innerText = data.about.location;
+            // Company Info Table
+            const companyInfoDiv = document.getElementById('about-company-info');
+            if (data.about.companyInfo) {
+                companyInfoDiv.innerHTML = data.about.companyInfo.map(row => `
+                    <div class="flex py-3 border-b border-zinc-100">
+                        <span class="w-20 md:w-24 shrink-0 font-medium text-zinc-400 text-xs uppercase tracking-wide pt-0.5">${row.label}</span>
+                        <span class="text-zinc-700 leading-relaxed">${row.value}</span>
+                    </div>
+                `).join('');
+            }
             document.getElementById('about-cloud').innerText = data.about.cloudInfo;
 
             // 7. Contact

@@ -88,6 +88,77 @@
         /* Font switching classes */
         .font-sans-jp { font-family: 'Inter', 'Zen Kaku Gothic New', sans-serif; letter-spacing: -0.3px; }
         .font-sans-kr { font-family: 'Inter', 'Noto Sans KR', sans-serif; }
+
+        /* Presentation Deck Slides */
+        .deck-slide {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: linear-gradient(145deg, #fafafa, #f1f1f1);
+            border: 1px solid #d4d4d8;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+        }
+        .deck-bubble {
+            position: absolute;
+            border-radius: 50%;
+            border: 1.5px solid #d4d4d8;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: 600;
+            color: #18181b;
+            line-height: 1.25;
+            white-space: pre-line;
+            font-size: clamp(0.35rem, 0.8vw, 0.7rem);
+            transition: transform 0.3s, box-shadow 0.3s;
+            z-index: 2;
+            cursor: default;
+            aspect-ratio: 1;
+        }
+        .deck-bubble:hover {
+            transform: scale(1.08);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+        .deck-bubble.lg {
+            font-size: clamp(0.5rem, 1.05vw, 0.9rem);
+            font-weight: 700;
+        }
+        .deck-chevron {
+            width: 0; height: 0;
+            border-top: clamp(18px, 3.5vw, 38px) solid transparent;
+            border-bottom: clamp(18px, 3.5vw, 38px) solid transparent;
+            border-left: clamp(22px, 4.5vw, 50px) solid #e11d48;
+            margin-left: -6px;
+            opacity: 0.85;
+        }
+        .deck-year .yr {
+            border: 2px solid #d4d4d8;
+            border-radius: 6px;
+            padding: clamp(3px, 0.6vw, 8px) clamp(6px, 1.2vw, 16px);
+            font-size: clamp(0.6rem, 1.3vw, 1.1rem);
+            font-weight: 800;
+            color: #18181b;
+            background: white;
+        }
+        .deck-ms-text {
+            font-size: clamp(0.38rem, 0.78vw, 0.68rem);
+            font-weight: 600;
+            color: #18181b;
+            white-space: pre-line;
+            line-height: 1.45;
+            border-left: 2px solid #a1a1aa;
+            padding-left: clamp(4px, 0.5vw, 8px);
+        }
+        @media (max-width: 640px) {
+            .deck-slide { aspect-ratio: 4/3; }
+            .deck-bubble { font-size: 0.32rem; }
+            .deck-bubble.lg { font-size: 0.4rem; }
+        }
     </style>
 </head>
 <body class="font-sans-jp transition-all duration-300">
@@ -211,6 +282,82 @@
             </div>
         </section>
 
+        <!-- Vision Section -->
+        <section id="vision" class="py-24 bg-white border-t border-zinc-200">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="mb-16 text-center reveal">
+                    <h2 id="vision-title" class="text-rose-600 font-bold tracking-wider text-sm mb-3 uppercase"></h2>
+                    <h3 id="vision-subtitle" class="text-3xl md:text-4xl font-bold text-zinc-900"></h3>
+                </div>
+
+                <!-- Strategy Slide -->
+                <div class="deck-slide mb-12 reveal delay-100">
+                    <!-- Red Accent Bar -->
+                    <div class="absolute top-0 right-0 w-[5.5%] h-full z-[5]" style="background:linear-gradient(180deg,#e11d48,#be123c);"></div>
+                    <!-- Globe SVG Background -->
+                    <svg class="absolute opacity-[0.05] z-0" style="top:50%;left:55%;transform:translate(-50%,-50%);width:60%;height:85%;" viewBox="0 0 400 400">
+                        <circle cx="200" cy="200" r="180" fill="none" stroke="#888" stroke-width="0.8"/>
+                        <ellipse cx="200" cy="200" rx="120" ry="180" fill="none" stroke="#888" stroke-width="0.5"/>
+                        <ellipse cx="200" cy="200" rx="50" ry="180" fill="none" stroke="#888" stroke-width="0.5"/>
+                        <line x1="20" y1="200" x2="380" y2="200" stroke="#888" stroke-width="0.5"/>
+                        <ellipse cx="200" cy="200" rx="180" ry="50" fill="none" stroke="#888" stroke-width="0.5"/>
+                        <ellipse cx="200" cy="200" rx="180" ry="115" fill="none" stroke="#888" stroke-width="0.5"/>
+                    </svg>
+                    <!-- Brand Label -->
+                    <div class="absolute top-[6%] left-[5%] z-[3]">
+                        <div style="font-size:clamp(0.55rem,1.1vw,0.8rem);font-weight:700;letter-spacing:0.2em;color:#52525b;">Studio AMI</div>
+                        <div style="font-size:clamp(0.45rem,0.9vw,0.65rem);font-weight:600;letter-spacing:0.15em;color:#a1a1aa;">VISION DECK</div>
+                    </div>
+                    <!-- Strategy Text -->
+                    <div class="absolute top-[20%] left-[5%] z-[3]" style="max-width:28%;">
+                        <h4 id="deck-strat-title" style="font-size:clamp(0.85rem,1.6vw,1.3rem);font-weight:700;color:#18181b;margin-bottom:6px;"></h4>
+                        <p id="deck-strat-desc" style="font-size:clamp(0.45rem,0.85vw,0.7rem);color:#52525b;line-height:1.6;white-space:pre-line;"></p>
+                    </div>
+                    <!-- Chevron Arrows -->
+                    <div class="absolute top-[40%] left-[30%] z-[1] flex items-center">
+                        <div class="deck-chevron"></div>
+                        <div class="deck-chevron"></div>
+                        <div class="deck-chevron"></div>
+                    </div>
+                    <!-- Scale Label -->
+                    <div class="absolute top-[36%] left-[48%] z-[2]" style="font-size:clamp(0.7rem,1.8vw,1.6rem);font-weight:900;color:#e11d48;letter-spacing:0.05em;line-height:1.15;">
+                        BUSINESS<br>SCALE
+                    </div>
+                    <!-- Bubbles Container -->
+                    <div id="deck-bubbles"></div>
+                    <!-- Vision Title -->
+                    <div class="absolute bottom-[7%] left-[5%] z-[3]">
+                        <div id="deck-vision-for" style="font-size:clamp(0.8rem,1.8vw,1.4rem);font-weight:700;color:#18181b;"></div>
+                        <div id="deck-vision-brand" style="font-size:clamp(1.4rem,3.8vw,3.2rem);font-weight:900;color:#18181b;letter-spacing:-0.02em;line-height:1;"></div>
+                    </div>
+                </div>
+
+                <!-- Timeline Slide -->
+                <div class="deck-slide reveal delay-200">
+                    <!-- Red Accent Bar -->
+                    <div class="absolute top-0 right-0 w-[5.5%] h-full z-[5]" style="background:linear-gradient(180deg,#e11d48,#be123c);"></div>
+                    <!-- Brand Label -->
+                    <div class="absolute top-[6%] left-[5%] z-[3]">
+                        <div style="font-size:clamp(0.55rem,1.1vw,0.8rem);font-weight:700;letter-spacing:0.2em;color:#52525b;">Studio AMI</div>
+                        <div style="font-size:clamp(0.45rem,0.9vw,0.65rem);font-weight:600;letter-spacing:0.15em;color:#a1a1aa;">VISION DECK</div>
+                    </div>
+                    <!-- Timeline Title -->
+                    <div class="absolute top-[20%] left-[5%] z-[3]" style="max-width:28%;">
+                        <h4 id="deck-tl-title" style="font-size:clamp(0.85rem,1.6vw,1.3rem);font-weight:700;color:#18181b;margin-bottom:6px;"></h4>
+                        <p id="deck-tl-desc" style="font-size:clamp(0.45rem,0.85vw,0.7rem);color:#52525b;line-height:1.6;white-space:pre-line;"></p>
+                    </div>
+                    <!-- Timeline Bar -->
+                    <div class="absolute left-[5%] right-[12%] z-[2]" style="bottom:30%;height:2.5px;background:#d4d4d8;"></div>
+                    <!-- Timeline Content (years + milestones) -->
+                    <div id="deck-timeline"></div>
+                    <!-- Red Arrows at end -->
+                    <div class="absolute z-[3]" style="bottom:26.5%;right:8%;font-size:clamp(0.8rem,1.8vw,1.6rem);font-weight:900;color:#e11d48;letter-spacing:-0.1em;">▶▶▶▶▶▶</div>
+                    <!-- Footer -->
+                    <div id="deck-tl-footer" class="absolute left-[5%] right-[12%] z-[3]" style="bottom:5%;font-size:clamp(0.55rem,1.1vw,0.9rem);font-weight:600;color:#a1a1aa;letter-spacing:0.1em;"></div>
+                </div>
+            </div>
+        </section>
+
         <!-- About Section -->
         <section id="about" class="py-24 bg-white">
             <div class="max-w-4xl mx-auto px-6">
@@ -321,6 +468,7 @@
                     { id: 'technology', label: 'Technology' },
                     { id: 'originals', label: 'Originals' },
                     { id: 'pipeline', label: 'Process' },
+                    { id: 'vision', label: 'Vision' },
                     { id: 'about', label: 'About' },
                     { id: 'partnership', label: 'Contact' },
                 ],
@@ -362,6 +510,27 @@
                         { step: '04', title: 'Optimization', description: '各プラットフォームの仕様に合わせてデータを最適化し、安全にデリバリー。' },
                     ],
                 },
+                vision: {
+                    sectionTitle: 'Strategy & Vision',
+                    sectionSubtitle: '成長戦略と将来展望',
+                    strategyTitle: '戦略',
+                    strategyDesc: '翻訳の専門性を軸に、\n自社IPコンテンツの\nグローバル展開を\n目指します。',
+                    visionFor: 'Vision for',
+                    visionBrand: 'STUDIO AMI',
+                    bubbles: [
+                        'マンガ\n翻訳', '電子\nマンガ', 'Web\n漫画', '紙出版',
+                        'プロモーション\nMV', 'グッズ', 'ショート\nムービー', 'IP\nライセンス'
+                    ],
+                    timelineTitle: 'タイムライン',
+                    timelineDesc: '創業から今に至る歩みと、今後の展望',
+                    milestones: [
+                        { year: '2023', text: 'フリーランス翻訳者\nとして活動開始' },
+                        { year: '2024', text: '合同会社設立\nマンガコンテンツ\n日韓同時制作開始' },
+                        { year: '2025', text: 'AI QCシステム\n自社開発\nGCP基盤構築' },
+                        { year: '2026', text: '自社IP創出\nコンテンツの\nマルチ展開' },
+                    ],
+                    timelineFooter: 'Company Journey and Future Outlook',
+                },
                 about: {
                     title: 'Who We Are',
                     companyName: { primary: '合同会社スタジオＡＭＩ', secondary: 'Studio AMI LLC' },
@@ -392,6 +561,7 @@
                     { id: 'technology', label: 'Technology' },
                     { id: 'originals', label: 'Originals' },
                     { id: 'pipeline', label: 'Process' },
+                    { id: 'vision', label: 'Vision' },
                     { id: 'about', label: 'About' },
                     { id: 'partnership', label: 'Contact' },
                 ],
@@ -432,6 +602,27 @@
                         { step: '03', title: 'Systematic QC', description: '시스템에 의한 자동 체크와 전문가에 의한 최종 확인의 이중 체제.' },
                         { step: '04', title: 'Optimization', description: '각 플랫폼 규격에 맞춰 데이터를 최적화하고 안전하게 딜리버리합니다.' },
                     ],
+                },
+                vision: {
+                    sectionTitle: 'Strategy & Vision',
+                    sectionSubtitle: '성장 전략과 미래 전망',
+                    strategyTitle: '전략',
+                    strategyDesc: '번역 전문성을 축으로,\n자체 IP 콘텐츠의\n글로벌 전개를\n목표로 합니다.',
+                    visionFor: 'Vision for',
+                    visionBrand: 'STUDIO AMI',
+                    bubbles: [
+                        '만화\n번역', '전자\n만화', 'Web\n만화', '종이\n출판',
+                        '프로모션\nMV', '굿즈', '숏폼\n무비', 'IP\n라이선스'
+                    ],
+                    timelineTitle: '타임라인',
+                    timelineDesc: '창업부터 현재까지의 발자취와 향후 전망',
+                    milestones: [
+                        { year: '2023', text: '프리랜서 번역가로\n활동 시작' },
+                        { year: '2024', text: '합동회사 설립\n만화 콘텐츠\n한일 동시 제작 시작' },
+                        { year: '2025', text: 'AI QC 시스템\n자체 개발\nGCP 기반 구축' },
+                        { year: '2026', text: '자체 IP 창출\n콘텐츠\n멀티 전개' },
+                    ],
+                    timelineFooter: 'Company Journey and Future Outlook',
                 },
                 about: {
                     title: 'Who We Are',
@@ -569,7 +760,45 @@
                 </div>
             `).join('');
 
-            // 6. About
+            // 6. Vision
+            const v = data.vision;
+            document.getElementById('vision-title').innerText = v.sectionTitle;
+            document.getElementById('vision-subtitle').innerText = v.sectionSubtitle;
+            document.getElementById('deck-strat-title').innerText = v.strategyTitle;
+            document.getElementById('deck-strat-desc').innerText = v.strategyDesc;
+            document.getElementById('deck-vision-for').innerText = v.visionFor;
+            document.getElementById('deck-vision-brand').innerText = v.visionBrand;
+
+            // Bubble positions: [top%, left%, width%]
+            const bPos = [
+                [50, 8, 12], [26, 22, 9.5], [58, 25, 9], [66, 38, 9.5],
+                [18, 50, 11], [8, 64, 10.5], [52, 56, 11], [2, 76, 14]
+            ];
+            document.getElementById('deck-bubbles').innerHTML = v.bubbles.map((label, i) => {
+                const [t, l, w] = bPos[i];
+                return `<div class="deck-bubble${w >= 12 ? ' lg' : ''}" style="top:${t}%;left:${l}%;width:${w}%;">${label}</div>`;
+            }).join('');
+
+            // Timeline
+            document.getElementById('deck-tl-title').innerText = v.timelineTitle;
+            document.getElementById('deck-tl-desc').innerText = v.timelineDesc;
+            document.getElementById('deck-tl-footer').innerText = v.timelineFooter;
+
+            const yPos = [12, 32, 52, 72]; // year left%
+            const mTop = [50, 38, 26, 14]; // milestone top% (ascending)
+            document.getElementById('deck-timeline').innerHTML = v.milestones.map((m, i) => {
+                const yl = yPos[i];
+                const mt = mTop[i];
+                return `
+                    <div class="deck-year absolute z-[3]" style="bottom:24%;left:${yl}%;transform:translateX(-50%);">
+                        <span class="yr">${m.year}</span>
+                    </div>
+                    <div class="absolute z-[2]" style="left:${yl}%;bottom:30%;height:${70 - mt}%;width:1.5px;background:#a1a1aa;"></div>
+                    <div class="deck-ms-text absolute z-[3]" style="top:${mt}%;left:${yl + 1.5}%;">${m.text}</div>
+                `;
+            }).join('');
+
+            // 7. About
             document.getElementById('about-title').innerText = data.about.title;
             document.getElementById('about-company-primary').innerText = data.about.companyName.primary;
             document.getElementById('about-company-secondary').innerText = data.about.companyName.secondary;
@@ -586,7 +815,7 @@
             }
             document.getElementById('about-cloud').innerText = data.about.cloudInfo;
 
-            // 7. Contact
+            // 8. Contact
             document.getElementById('contact-title').innerText = data.partnership.title;
             document.getElementById('contact-desc').innerText = data.partnership.desc;
             document.getElementById('label-name').innerText = data.partnership.form.name;
@@ -595,7 +824,7 @@
             document.getElementById('submit-text').innerText = data.partnership.form.submit;
             document.getElementById('contact-success-msg').innerText = data.partnership.form.success;
 
-            // 8. Footer
+            // 9. Footer
             document.getElementById('year').innerText = new Date().getFullYear();
 
             // Re-initialize icons and 3D effects

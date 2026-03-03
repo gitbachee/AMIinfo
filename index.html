@@ -309,7 +309,7 @@
                     <!-- Radiating Lines SVG -->
                     <svg id="deck-rays" class="absolute inset-0 w-full h-full z-[1]" viewBox="0 0 1600 900"></svg>
                     <!-- Scale Label -->
-                    <div class="absolute top-[36%] left-[32%] z-[2]" style="font-size:clamp(0.7rem,1.8vw,1.6rem);font-weight:900;color:#e11d48;letter-spacing:0.05em;line-height:1.15;text-align:center;">
+                    <div class="absolute top-[64%] left-[42%] z-[2]" style="font-size:clamp(0.7rem,1.8vw,1.6rem);font-weight:900;color:#e11d48;letter-spacing:0.05em;line-height:1.15;text-align:center;opacity:0.7;">
                         BUSINESS<br>SCALE
                     </div>
                     <!-- Bubbles Container -->
@@ -508,7 +508,7 @@
                     visionBrand: 'STUDIO AMI',
                     bubbles: [
                         'マンガ\n翻訳', '電子\nマンガ', 'Web\n漫画', '紙出版',
-                        'プロモーション\nMV', 'グッズ', 'ショート\nムービー', 'IP\nライセンス'
+                        'プロモーション\nMV', 'ショート\nムービー', 'グッズ', 'IP\nCreation'
                     ],
                     timelineTitle: 'タイムライン',
                     timelineDesc: '創業から今に至る歩みと、今後の展望',
@@ -601,7 +601,7 @@
                     visionBrand: 'STUDIO AMI',
                     bubbles: [
                         '만화\n번역', '전자\n만화', 'Web\n만화', '종이\n출판',
-                        '프로모션\nMV', '굿즈', '숏폼\n무비', 'IP\n라이선스'
+                        '프로모션\nMV', '숏폼\n무비', '굿즈', 'IP\nCreation'
                     ],
                     timelineTitle: '타임라인',
                     timelineDesc: '창업부터 현재까지의 발자취와 향후 전망',
@@ -758,34 +758,39 @@
             document.getElementById('deck-vision-for').innerText = v.visionFor;
             document.getElementById('deck-vision-brand').innerText = v.visionBrand;
 
-            // Bubble positions: [top%, left%, width%]
+            // Bubble positions: [top%, left%, width%] — tree from マンガ翻訳
             const bPos = [
-                [50, 8, 12], [26, 22, 9.5], [58, 25, 9], [66, 38, 9.5],
-                [18, 50, 11], [8, 64, 10.5], [52, 56, 11], [2, 76, 14]
+                [46, 4, 13],     // 0: マンガ翻訳 (root, left)
+                [18, 26, 9],     // 1: 電子マンガ (L1 upper)
+                [44, 28, 9],     // 2: Web漫画 (L1 middle)
+                [70, 22, 9.5],   // 3: 紙出版 (L1 lower)
+                [6, 48, 10.5],   // 4: プロモーションMV (L2 upper)
+                [32, 50, 10.5],  // 5: ショートムービー (L2 mid)
+                [50, 62, 10],    // 6: グッズ (L3)
+                [12, 74, 14],    // 7: IP Creation (L4, largest)
             ];
             document.getElementById('deck-bubbles').innerHTML = v.bubbles.map((label, i) => {
                 const [t, l, w] = bPos[i];
                 return `<div class="deck-bubble${w >= 12 ? ' lg' : ''}" style="top:${t}%;left:${l}%;width:${w}%;">${label}</div>`;
             }).join('');
 
-            // Radiating lines from center to each bubble
-            const ox = 560, oy = 390;
+            // Tree connections: from → to (hierarchy branching from マンガ翻訳)
+            const edges = [[0,1],[0,2],[0,3],[1,4],[2,5],[4,6],[5,6],[6,7]];
+            const ctrs = bPos.map(([t, l, w]) => [(l + w/2) * 16, t * 9 + w * 8]);
             document.getElementById('deck-rays').innerHTML = `
                 <defs>
-                    <marker id="ray-tip" markerWidth="24" markerHeight="16" refX="22" refY="8" orient="auto" markerUnits="userSpaceOnUse">
-                        <path d="M0,2 L20,8 L0,14 L4,8 Z" fill="#e11d48" fill-opacity="0.45"/>
+                    <marker id="ray-tip" markerWidth="20" markerHeight="14" refX="18" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+                        <path d="M0,2 L16,7 L0,12 L3,7 Z" fill="#e11d48" fill-opacity="0.5"/>
                     </marker>
                 </defs>
-            ` + bPos.map(([t, l, w]) => {
-                const bx = (l + w / 2) * 16;
-                const by = t * 9 + w * 8;
-                const mx = (ox + bx) / 2, my = (oy + by) / 2;
-                const dx = bx - ox, dy = by - oy;
-                const len = Math.sqrt(dx * dx + dy * dy) || 1;
-                const curve = 35;
-                const cx = mx + (-dy / len) * curve;
-                const cy = my + (dx / len) * curve;
-                return `<path d="M${ox},${oy} Q${cx.toFixed(0)},${cy.toFixed(0)} ${bx.toFixed(0)},${by.toFixed(0)}" fill="none" stroke="#e11d48" stroke-width="2.8" stroke-opacity="0.18" marker-end="url(#ray-tip)"/>`;
+            ` + edges.map(([f, t]) => {
+                const [x1, y1] = ctrs[f], [x2, y2] = ctrs[t];
+                const mx = (x1+x2)/2, my = (y1+y2)/2;
+                const dx = x2-x1, dy = y2-y1;
+                const len = Math.sqrt(dx*dx + dy*dy) || 1;
+                const cv = 30;
+                const cx = mx + (-dy/len)*cv, cy = my + (dx/len)*cv;
+                return `<path d="M${x1.toFixed(0)},${y1.toFixed(0)} Q${cx.toFixed(0)},${cy.toFixed(0)} ${x2.toFixed(0)},${y2.toFixed(0)}" fill="none" stroke="#e11d48" stroke-width="3" stroke-opacity="0.22" marker-end="url(#ray-tip)"/>`;
             }).join('');
 
             // Timeline

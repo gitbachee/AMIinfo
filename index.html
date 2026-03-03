@@ -128,14 +128,7 @@
             font-size: clamp(0.5rem, 1.05vw, 0.9rem);
             font-weight: 700;
         }
-        .deck-chevron {
-            width: 0; height: 0;
-            border-top: clamp(18px, 3.5vw, 38px) solid transparent;
-            border-bottom: clamp(18px, 3.5vw, 38px) solid transparent;
-            border-left: clamp(22px, 4.5vw, 50px) solid #e11d48;
-            margin-left: -6px;
-            opacity: 0.85;
-        }
+        /* Radiating ray lines are drawn via SVG in render() */
         .deck-year .yr {
             border: 2px solid #d4d4d8;
             border-radius: 6px;
@@ -313,14 +306,10 @@
                         <h4 id="deck-strat-title" style="font-size:clamp(0.85rem,1.6vw,1.3rem);font-weight:700;color:#18181b;margin-bottom:6px;"></h4>
                         <p id="deck-strat-desc" style="font-size:clamp(0.45rem,0.85vw,0.7rem);color:#52525b;line-height:1.6;white-space:pre-line;"></p>
                     </div>
-                    <!-- Chevron Arrows -->
-                    <div class="absolute top-[40%] left-[30%] z-[1] flex items-center">
-                        <div class="deck-chevron"></div>
-                        <div class="deck-chevron"></div>
-                        <div class="deck-chevron"></div>
-                    </div>
+                    <!-- Radiating Lines SVG -->
+                    <svg id="deck-rays" class="absolute inset-0 w-full h-full z-[1]" viewBox="0 0 1600 900"></svg>
                     <!-- Scale Label -->
-                    <div class="absolute top-[36%] left-[48%] z-[2]" style="font-size:clamp(0.7rem,1.8vw,1.6rem);font-weight:900;color:#e11d48;letter-spacing:0.05em;line-height:1.15;">
+                    <div class="absolute top-[36%] left-[32%] z-[2]" style="font-size:clamp(0.7rem,1.8vw,1.6rem);font-weight:900;color:#e11d48;letter-spacing:0.05em;line-height:1.15;text-align:center;">
                         BUSINESS<br>SCALE
                     </div>
                     <!-- Bubbles Container -->
@@ -777,6 +766,26 @@
             document.getElementById('deck-bubbles').innerHTML = v.bubbles.map((label, i) => {
                 const [t, l, w] = bPos[i];
                 return `<div class="deck-bubble${w >= 12 ? ' lg' : ''}" style="top:${t}%;left:${l}%;width:${w}%;">${label}</div>`;
+            }).join('');
+
+            // Radiating lines from center to each bubble
+            const ox = 560, oy = 390;
+            document.getElementById('deck-rays').innerHTML = `
+                <defs>
+                    <marker id="ray-tip" markerWidth="24" markerHeight="16" refX="22" refY="8" orient="auto" markerUnits="userSpaceOnUse">
+                        <path d="M0,2 L20,8 L0,14 L4,8 Z" fill="#e11d48" fill-opacity="0.45"/>
+                    </marker>
+                </defs>
+            ` + bPos.map(([t, l, w]) => {
+                const bx = (l + w / 2) * 16;
+                const by = t * 9 + w * 8;
+                const mx = (ox + bx) / 2, my = (oy + by) / 2;
+                const dx = bx - ox, dy = by - oy;
+                const len = Math.sqrt(dx * dx + dy * dy) || 1;
+                const curve = 35;
+                const cx = mx + (-dy / len) * curve;
+                const cy = my + (dx / len) * curve;
+                return `<path d="M${ox},${oy} Q${cx.toFixed(0)},${cy.toFixed(0)} ${bx.toFixed(0)},${by.toFixed(0)}" fill="none" stroke="#e11d48" stroke-width="2.8" stroke-opacity="0.18" marker-end="url(#ray-tip)"/>`;
             }).join('');
 
             // Timeline

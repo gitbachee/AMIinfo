@@ -495,9 +495,9 @@
             document.getElementById('hero-cta').innerText = data.hero.cta;
 
             // 3. Services
-            document.getElementById('services-title').innerText = data.services.title;
-            document.getElementById('services-subtitle').innerText = data.services.subtitle;
-            document.getElementById('services-grid').innerHTML = data.services.items.map(item => `
+            document.getElementById('services-title').innerText = data.technology.title;
+            document.getElementById('services-subtitle').innerText = data.technology.subtitle;
+            document.getElementById('services-grid').innerHTML = data.technology.items.map(item => `
                 <div class="card-wrapper h-full group">
                     <div class="card-gradient"></div>
                     <div class="relative p-8 flex flex-col h-full z-20">
@@ -511,9 +511,9 @@
             `).join('');
 
             // 4. Work
-            document.getElementById('work-title').innerText = data.work.title;
-            document.getElementById('work-subtitle').innerText = data.work.subtitle;
-            document.getElementById('work-grid').innerHTML = data.work.items.map((item, idx) => `
+            document.getElementById('work-title').innerText = data.originals.title;
+            document.getElementById('work-subtitle').innerText = data.originals.subtitle;
+            document.getElementById('work-grid').innerHTML = data.originals.items.map((item, idx) => `
                 <div class="card-wrapper bg-white group reveal delay-${(idx % 3) * 100}">
                     <div class="card-gradient"></div>
                     <div class="relative p-8 h-full flex flex-col z-20">
@@ -538,9 +538,9 @@
             `).join('');
 
             // 5. Process
-            document.getElementById('process-title').innerText = data.process.title;
-            document.getElementById('process-subtitle').innerText = data.process.subtitle;
-            document.getElementById('process-grid').innerHTML = data.process.steps.map((step, idx) => `
+            document.getElementById('process-title').innerText = data.pipeline.title;
+            document.getElementById('process-subtitle').innerText = data.pipeline.subtitle;
+            document.getElementById('process-grid').innerHTML = data.pipeline.steps.map((step, idx) => `
                 <div class="group reveal delay-${idx * 100}">
                     <div class="w-12 h-12 bg-zinc-800 border border-zinc-700 rounded-full flex items-center justify-center text-rose-400 font-bold text-lg mb-6 mx-auto group-hover:bg-rose-600 group-hover:text-white group-hover:border-rose-600 transition-all duration-300 relative z-20">
                         ${step.step}
@@ -561,13 +561,13 @@
             document.getElementById('about-cloud').innerText = data.about.cloudInfo;
 
             // 7. Contact
-            document.getElementById('contact-title').innerText = data.contact.title;
-            document.getElementById('contact-desc').innerText = data.contact.desc;
-            document.getElementById('label-name').innerText = data.contact.form.name;
-            document.getElementById('label-email').innerText = data.contact.form.email;
-            document.getElementById('label-message').innerText = data.contact.form.message;
-            document.getElementById('submit-text').innerText = data.contact.form.submit;
-            document.getElementById('contact-success-msg').innerText = data.contact.form.success;
+            document.getElementById('contact-title').innerText = data.partnership.title;
+            document.getElementById('contact-desc').innerText = data.partnership.desc;
+            document.getElementById('label-name').innerText = data.partnership.form.name;
+            document.getElementById('label-email').innerText = data.partnership.form.email;
+            document.getElementById('label-message').innerText = data.partnership.form.message;
+            document.getElementById('submit-text').innerText = data.partnership.form.submit;
+            document.getElementById('contact-success-msg').innerText = data.partnership.form.success;
 
             // 8. Footer
             document.getElementById('year').innerText = new Date().getFullYear();

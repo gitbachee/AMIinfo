@@ -569,7 +569,7 @@
                 hero: {
                     tagline: 'Tech-Driven Content Studio',
                     headline: [
-                        '언어의 장벽을, 기술로 넘다.',
+                        '언어의 장벽을 기술로 넘다.',
                         '차세대 콘텐츠 경험을 창조합니다.'
                     ],
                     subheadline: 'Studio AMI는 로컬라이제이션 전문성과 AI 기술을 융합한\n크리에이티브 테크 기업입니다.',
@@ -587,7 +587,7 @@
                 },
                 originals: {
                     title: 'Projects & Development',
-                    subtitle: '현장의 과제를, 스스로 기술로 해결한다',
+                    subtitle: '현장의 과제를 스스로 기술로 해결한다',
                     items: [
                         { id: 1, category: 'Localization', title: '디지털 코믹 한일 동시 제작', goal: '월간 연재 작품의 번역·식자·검수를 품질 저하 없이 안정적으로 운용.', process: '번역·감수·식자 워크플로우를 통합하고, 용어집과 스타일 가이드를 일원화 관리.', impact: '작업 시간 30% 단축 및 오역·오타율 대폭 감소.' },
                         { id: 2, category: 'Internal R&D', title: 'AI 기반 콘텐츠 QC 시스템', goal: '방대한 이미지 납품물의 검수에 소요되는 육안 확인 비용을 절감하고 품질을 균일화.', process: '번역 전후 이미지 차분 검출, OCR, AI 모델에 의한 자동 분류 파이프라인을 자체 개발·운용.', impact: '검수 정확도 향상과 동시에 QC 공수를 대폭 절감. 현재도 지속적으로 개선 중.' },
@@ -631,7 +631,7 @@
                     location: '일본 오사카 (Namba, Osaka)',
                     content: [
                         'Studio AMI는 언어 전문가와 엔지니어가 함께하는 콘텐츠 스튜디오입니다.',
-                        '우리는 「번역」을 단순한 작업이 아닌, 「문화를 잇는 기술」이라고 정의합니다.',
+                        '우리는 \'번역\'을 단순한 작업이 아닌 \'문화를 잇는 기술\'이라고 정의합니다.',
                         '수년간 축적해 온 로컬라이즈 경험에 최신 AI 기술을 더해, 더 많은 이야기를, 더 빠르게, 더 넓은 세상으로 전하는 것을 목표로 합니다.',
                     ],
                     companyInfo: [
@@ -697,9 +697,11 @@
             // 2. Hero
             document.getElementById('hero-tagline').innerText = data.hero.tagline;
             // Render headline as individual block spans for controlled line breaking
-            document.getElementById('hero-headline').innerHTML = data.hero.headline.map(line => 
+            const hlEl = document.getElementById('hero-headline');
+            hlEl.innerHTML = data.hero.headline.map(line =>
                 `<span class="block break-keep">${line}</span>`
             ).join('');
+            hlEl.style.lineHeight = lang === 'KR' ? '1.2' : '1.15';
             document.getElementById('hero-subheadline').innerText = data.hero.subheadline;
             document.getElementById('hero-cta').innerText = data.hero.cta;
 

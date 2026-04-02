@@ -520,7 +520,7 @@
                     visionBrand: 'STUDIO AMI',
                     bubbles: [
                         'マンガ\n翻訳', '電子\nマンガ', 'Web\n漫画', '紙出版',
-                        'プロモーション\nPV', 'ショート\nムービー', 'グッズ', 'IP\nCreation'
+                        'プロモーション\nMV', 'ショート\nムービー', 'グッズ', 'IP\nCreation'
                     ],
                     timelineTitle: 'タイムライン',
                     timelineDesc: '創業から今に至る歩みと、今後の展望',
@@ -785,7 +785,8 @@
             ];
             document.getElementById('deck-bubbles').innerHTML = v.bubbles.map((label, i) => {
                 const [t, l, w] = bPos[i];
-                return `<div class="deck-bubble${w >= 12 ? ' lg' : ''}" style="top:${t}%;left:${l}%;width:${w}%;">${label}</div>`;
+                const fs = (i === 4) ? 'font-size:clamp(0.35rem,0.8vw,0.7rem);' : '';
+                return `<div class="deck-bubble${w >= 12 ? ' lg' : ''}" style="top:${t}%;left:${l}%;width:${w}%;${fs}">${label}</div>`;
             }).join('');
 
             // Radiating rays from マンガ翻訳 (index 0) to every other bubble

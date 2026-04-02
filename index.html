@@ -520,7 +520,7 @@
                     visionBrand: 'STUDIO AMI',
                     bubbles: [
                         'マンガ\n翻訳', '電子\nマンガ', 'Web\n漫画', '紙出版',
-                        'プロモーション\nMV', 'ショート\nムービー', 'グッズ', 'IP\nCreation'
+                        'プロモーション\nPV', 'ショート\nムービー', 'グッズ', 'IP\nCreation'
                     ],
                     timelineTitle: 'タイムライン',
                     timelineDesc: '創業から今に至る歩みと、今後の展望',
@@ -849,6 +849,14 @@
             // 9. Footer
             document.getElementById('year').innerText = new Date().getFullYear();
 
+            // Assemble obfuscated email
+            document.querySelectorAll('.eml').forEach(el => {
+                const addr = el.dataset.u + '@' + el.dataset.d;
+                el.textContent = addr;
+                el.style.cursor = 'pointer';
+                el.onclick = () => { window.location.href = 'mai' + 'lto:' + addr; };
+            });
+
             // Re-initialize icons and 3D effects
             lucide.createIcons();
             init3DEffects();
@@ -950,12 +958,6 @@
         // --- INIT ---
         window.onload = () => {
             render();
-            document.querySelectorAll('.eml').forEach(el => {
-                const addr = el.dataset.u + '@' + el.dataset.d;
-                el.textContent = addr;
-                el.style.cursor = 'pointer';
-                el.onclick = () => { window.location.href = 'mai' + 'lto:' + addr; };
-            });
         };
 
     </script>

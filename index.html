@@ -642,7 +642,7 @@
                         { label: '사업내용', value: '・한일 콘텐츠 로컬라이제이션<br>・디지털 콘텐츠의 기획·제작 및 판매, 저작권 취득·관리 및 허락<br>・제작 지원 툴 개발 및 서비스 운영' },
                         { label: '기술기반', value: 'Google Cloud Platform' },
                     ],
-                    cloudInfo: 'Google Cloud Platform 위에서 자사 툴을 개발·운용. 확장 가능한 인프라로 성장을 가속 중.',
+                    cloudInfo: 'Google Cloud Platform을 통해 자사 툴을 개발·운용. 확장 가능한 인프라로 성장을 가속 중.',
                 },
                 partnership: {
                     title: 'Contact Us',
@@ -701,7 +701,7 @@
             hlEl.innerHTML = data.hero.headline.map(line =>
                 `<span class="block break-keep">${line}</span>`
             ).join('');
-            hlEl.style.lineHeight = lang === 'KR' ? '1.2' : '1.15';
+            hlEl.style.lineHeight = currentLang === 'KR' ? '1.2' : '1.15';
             document.getElementById('hero-subheadline').innerText = data.hero.subheadline;
             document.getElementById('hero-cta').innerText = data.hero.cta;
 

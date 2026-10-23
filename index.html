@@ -24,8 +24,10 @@
 <script>
   (function () {
     try {
-      var l = localStorage.getItem('ami-lang');
-      if (l !== 'ja' && l !== 'ko') l = (navigator.language || '').toLowerCase().indexOf('ko') === 0 ? 'ko' : 'ja';
+      // 既定は日本語。?lang=ko のリンクで開いた時と、同じタブ内で切り替えた時だけ韓国語
+      var q = (location.search.match(/[?&]lang=(ja|ko)(?:&|$)/) || [])[1];
+      var l = q || sessionStorage.getItem('ami-lang') || 'ja';
+      try { localStorage.removeItem('ami-lang'); } catch (e) {}   // 以前の版がブラウザに残した言語設定を消す
       document.documentElement.dataset.lang = l;
       document.documentElement.lang = l;
     } catch (e) {}
@@ -339,7 +341,7 @@
     document.querySelectorAll('[data-set-lang]').forEach(function (b) {
       b.setAttribute('aria-pressed', String(b.dataset.setLang === l));
     });
-    try { localStorage.setItem('ami-lang', l); } catch (e) {}
+    try { sessionStorage.setItem('ami-lang', l); } catch (e) {}
     renderGates();
   }
   document.querySelectorAll('[data-set-lang]').forEach(function (b) {

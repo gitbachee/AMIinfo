@@ -132,10 +132,11 @@
   .card i:nth-of-type(2) { top: -5px; right: -5px; }
   .card i:nth-of-type(3) { bottom: -5px; left: -5px; }
   .card i:nth-of-type(4) { bottom: -5px; right: -5px; }
-  .card svg { display: block; height: 52px; width: auto; margin: 0 auto 24px; fill: var(--tan); color: var(--tan); }
+  .card .icons { display: flex; justify-content: center; align-items: center; gap: 20px; height: 56px; margin-bottom: 24px; color: var(--tan); }
+  .card .icons svg { display: block; flex: none; }
   .card h3 { margin-bottom: 10px; text-align: center; font-size: 15.5px; font-weight: 700; line-height: 1.6; color: var(--tan-deep); }
-  .card p { font-size: 14px; line-height: 1.9; color: var(--ink-2); }
-  html[data-lang="ja"] :is(.about-lead, .card h3, .co dd) { word-break: auto-phrase; }
+  .card p { font-size: 14px; line-height: 1.9; color: var(--ink-2); text-align: center; text-wrap: balance; }
+  html[data-lang="ja"] :is(.about-lead, .card h3, .card p, .co dd) { word-break: auto-phrase; }
 
   /* COMPANY */
   .co { max-width: 860px; margin: 0 auto; border-top: 1px solid var(--tan); background: #fff; }
@@ -190,24 +191,24 @@
   <section class="sec" id="about" aria-labelledby="about-title">
     <h2 class="sec-title" id="about-title">ABOUT</h2>
     <p class="about-lead">
-      <span lang="ja">スタジオAMIは、日本と韓国のマンガ・デジタルコンテンツの翻訳と制作を手がける会社です。</span>
-      <span lang="ko">스튜디오 아미는 일본과 한국의 만화·디지털 콘텐츠 번역과 제작을 하는 회사입니다.</span>
+      <span lang="ja">スタジオAMIは、日本と韓国のマンガ・デジタルコンテンツを翻訳・制作する会社です。</span>
+      <span lang="ko">스튜디오 아미는 일본과 한국의 만화·디지털 콘텐츠를 번역하고 제작하는 회사입니다.</span>
     </p>
     <ul class="biz">
       <li class="card"><i></i><i></i><i></i><i></i>
-        <svg viewBox="632 217 194 150" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path stroke-width="12.0" d="M771.5 261.5V253.5A23 23 0 0 0 748.5 230.5H668A23 23 0 0 0 645 253.5V308A23 23 0 0 0 668 331H681.5L683 352.5L717.5 331"/><path stroke-width="13.0" d="M811 360.4V314.5A22 22 0 0 0 789 292.5H728"/></g><path fill="currentColor" stroke="currentColor" stroke-width="3" stroke-linejoin="round" d="M702 292.5L729 272V313Z"/></svg>
+        <div class="icons"><svg viewBox="655 633 143 120" width="60" height="50" aria-hidden="true" focusable="false"><path fill="currentColor" d="M668.4 745.9C666.2 744.3 666.7 742.7 671.7 732.8C677 722.2 677 722 673.5 718.2C670.6 715.1 668 711.1 666.8 707.8C666.1 706 665 703.4 664.3 702.1C661.3 696.3 660.8 688.5 663 681.2C667.7 665.3 677.7 653.8 692.8 646.9C706.8 640.5 725.2 637.4 736.1 639.7C738.2 640.1 740.8 640.5 741.8 640.5C746 640.5 763.3 647.2 769.2 651.1C773.1 653.7 782.9 663.4 785.5 667.2C790.9 675.3 792 678.9 792 689.1C792 700.3 789.3 706.7 780.2 717.1C770.5 728.2 760.7 733.8 743.1 738.2C734.9 740.3 721.8 740.8 716.7 739.3C715.4 738.8 713.6 738.5 712.8 738.5C712 738.5 710.1 738.2 708.5 737.8C698.9 735.3 697.8 735.4 687.5 740C674.3 745.9 670.1 747.2 668.4 745.9Z"/><text x="727.5" y="708.9" text-anchor="middle" font-size="50" font-weight="700" fill="#fff" font-family="Zen Kaku Gothic New, sans-serif">あ</text></svg><svg viewBox="655 633 143 120" width="60" height="50" aria-hidden="true" focusable="false"><path fill="currentColor" transform="translate(1453.0 0) scale(-1 1)" d="M668.4 745.9C666.2 744.3 666.7 742.7 671.7 732.8C677 722.2 677 722 673.5 718.2C670.6 715.1 668 711.1 666.8 707.8C666.1 706 665 703.4 664.3 702.1C661.3 696.3 660.8 688.5 663 681.2C667.7 665.3 677.7 653.8 692.8 646.9C706.8 640.5 725.2 637.4 736.1 639.7C738.2 640.1 740.8 640.5 741.8 640.5C746 640.5 763.3 647.2 769.2 651.1C773.1 653.7 782.9 663.4 785.5 667.2C790.9 675.3 792 678.9 792 689.1C792 700.3 789.3 706.7 780.2 717.1C770.5 728.2 760.7 733.8 743.1 738.2C734.9 740.3 721.8 740.8 716.7 739.3C715.4 738.8 713.6 738.5 712.8 738.5C712 738.5 710.1 738.2 708.5 737.8C698.9 735.3 697.8 735.4 687.5 740C674.3 745.9 670.1 747.2 668.4 745.9Z"/><text x="725.5" y="707.9" text-anchor="middle" font-size="50" font-weight="700" fill="#fff" font-family="Noto Sans KR, sans-serif">아</text></svg></div>
         <h3><span lang="ja">日韓ローカライゼーション</span><span lang="ko">한일 콘텐츠 로컬라이제이션</span></h3>
         <p><span lang="ja">マンガ・デジタルコミックの日韓・韓日翻訳、写植、検品を行っています。</span><span lang="ko">만화·디지털 코믹의 일한·한일 번역, 식자, 검수를 하고 있습니다.</span></p>
       </li>
       <li class="card"><i></i><i></i><i></i><i></i>
-        <svg viewBox="397.5 630 232 190" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="13.5" stroke-linecap="round"><rect x="411.5" y="643.8" width="204" height="136.5" rx="8"/><path d="M488 803.3H539"/></g><g><rect x="428.8" y="661" width="81" height="102" rx="4"/><rect x="517.2" y="661" width="81" height="47" rx="4"/><rect x="517.2" y="716" width="81" height="47" rx="4"/></g></svg>
+        <div class="icons"><svg viewBox="397.5 630 232 190" width="55" height="45" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="13.5"><rect x="411.5" y="643.8" width="204" height="136.5" rx="8"/><path d="M488 803.3H539"/></g><g fill="currentColor"><rect x="428.8" y="661" width="81" height="102" rx="4"/><rect x="517.2" y="661" width="81" height="47" rx="4"/><rect x="517.2" y="716" width="81" height="47" rx="4"/></g></svg><svg viewBox="402 94.5 223 223" width="52" height="52" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="11"><circle cx="513.5" cy="206" r="100"/><ellipse cx="513.5" cy="206" rx="51.4" ry="100"/><path d="M513.5 106V306M413.5 206H613.5M442.8 135.3A103 103 0 0 0 584.2 135.3M442.8 276.7A103 103 0 0 1 584.2 276.7"/></g></svg></div>
         <h3><span lang="ja">デジタルコンテンツの企画・制作</span><span lang="ko">디지털 콘텐츠 기획·제작</span></h3>
         <p><span lang="ja">デジタルコンテンツの企画・制作・販売と、著作権の取得・管理・許諾を行っています。</span><span lang="ko">디지털 콘텐츠의 기획·제작·판매와 저작권 취득·관리·허락을 하고 있습니다.</span></p>
       </li>
       <li class="card"><i></i><i></i><i></i><i></i>
-        <svg viewBox="219 214 138 141" aria-hidden="true"><g><rect x="256" y="220.3" width="34.3" height="34.5" rx="3"/><rect x="225" y="258" width="34.5" height="34" rx="3"/><rect x="328" y="262" width="23" height="24" rx="3"/><rect x="277" y="283.5" width="45" height="43" rx="3"/><rect x="248" y="314" width="34" height="34.5" rx="3"/></g></svg>
+        <div class="icons"><svg viewBox="633 218 151 147" width="50" height="49" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="12.0"><path d="M771.5 261.5V253.5A23 23 0 0 0 748.5 230.5H668A23 23 0 0 0 645 253.5V308A23 23 0 0 0 668 331H681.5L683 352.5L717.5 331"/><path d="M717.5 331H748.5A23 23 0 0 0 771.5 308V261.5"/></g><circle cx="686" cy="281" r="7" fill="currentColor"/><circle cx="708" cy="281" r="7" fill="currentColor"/><circle cx="730" cy="281" r="7" fill="currentColor"/></svg><svg viewBox="219 214 138 141" width="46" height="47" aria-hidden="true" focusable="false"><g fill="currentColor"><rect x="256" y="220.3" width="34.3" height="34.5" rx="3"/><rect x="225" y="258" width="34.5" height="34" rx="3"/><rect x="328" y="262" width="23" height="24" rx="3"/><rect x="277" y="283.5" width="45" height="43" rx="3"/><rect x="248" y="314" width="34" height="34.5" rx="3"/></g></svg></div>
         <h3><span lang="ja">制作支援ツールの開発・運営</span><span lang="ko">제작 지원 툴 개발·운영</span></h3>
-        <p><span lang="ja">翻訳・写植・検品の作業を支えるツールを開発・運営しています。</span><span lang="ko">번역·식자·검수 작업을 돕는 툴을 개발·운영하고 있습니다.</span></p>
+        <p><span lang="ja">翻訳・写植・検品作業をサポートするツールを開発・運営しています。</span><span lang="ko">번역·식자·검수 작업을 돕는 툴을 개발·운영하고 있습니다.</span></p>
       </li>
     </ul>
   </section>

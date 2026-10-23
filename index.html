@@ -32,8 +32,10 @@
       document.documentElement.lang = l;
     } catch (e) {}
     try {
-      if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'animate' in document.documentElement) {
+      if ('animate' in document.documentElement) {
         document.documentElement.classList.add('logo-anim');
+        // 「動きを減らす」設定（Windows の「アニメーション効果」オフも含む）の人には、動きのない静かな版を見せる
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.dataset.motion = 'calm';
         // 万一スクリプトが止まってもロゴが消えたままにならないように
         setTimeout(function () { document.documentElement.classList.remove('logo-anim'); }, 7000);
       }
@@ -399,6 +401,21 @@
       { opacity: 1, transform: 'scale(1.18)', offset: 0.6 },
       { opacity: 1, transform: 'none' }
     ], at, dur, 'ease-out');
+  }
+
+  var hero = document.querySelector('.hero');
+  if (root.dataset.motion === 'calm') {
+    // 静かな版：飛ぶ・回る・揺れるは一切なし。部品が同じ順番でふわっと現れて組み上がるだけ（約2.8秒）
+    [['.lt', 0, 110], ['.star', 450, 80], ['.mdraw', 520, 0], ['.panel', 600, 70], ['.bub', 760, 0],
+     ['.px', 950, 50], ['.gdraw', 1000, 0], ['.gline', 1000, 0], ['.gspin', 1000, 0], ['.glat', 1000, 0],
+     ['.ckeep', 1350, 0], ['.arrow', 1450, 0], ['.ahead', 1450, 0],
+     ['.sq', 1750, 0], ['.ln', 1750, 0], ['.br', 1750, 0], ['.tl', 2000, 25]].forEach(function (c) {
+      $$(c[0]).forEach(function (el, i) { play(el, [{ opacity: 0 }, { opacity: 1 }], c[1] + i * c[2], 420, 'ease-out'); });
+    });
+    play(document.querySelector('.hero-name'), [{ opacity: 0 }, { opacity: 1 }], 2350, 420, 'ease-out');
+    Promise.all(anims.map(function (a) { return a.finished; })).then(settle, settle);
+    hero.addEventListener('click', function () { anims.forEach(function (a) { a.finish(); }); settle(); }, { once: true });
+    return;
   }
 
   // ① AMI：判子のように一文字ずつ
